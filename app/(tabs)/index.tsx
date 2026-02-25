@@ -9,8 +9,8 @@ export default function HomeScreen() {
       />
 
       <Text style={styles.title}>Tugas Mobile Programming</Text>
-      <Text>Nama: Hanna Situmeang</Text>
-      <Text>NIM: 123456</Text>
+      <Text>Nama: Hanna Pati Lopian Br Situmeang</Text>
+      <Text>NIM: 2405102001</Text>
     </View>
   );
 }
