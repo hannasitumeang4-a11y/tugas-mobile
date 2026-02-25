@@ -1,81 +1,156 @@
+import { Ionicons } from '@expo/vector-icons'; // Menggunakan Ionicons untuk hobi
 import { useFonts } from 'expo-font';
-import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Collapsible } from '@/components/ui/collapsible';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-
-export default function TabTwoScreen() {
-  const [fontsLoaded, fontError] = useFonts({
+export default function ExploreScreen() {
+  const [fontsLoaded] = useFonts({
     'Jakarta': require('../../assets/fonts/PlusJakartaSans-Regular.ttf'),
   });
 
   if (!fontsLoaded) {
-    if (fontError) {
-       console.error("Font Gagal Load:", fontError);
-    }
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#FF69B4" />
       </View>
     );
   }
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={styles.jakartaFont}>
-          Explore
-        </ThemedText>
-      </ThemedView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={[styles.headerTitle, styles.jakartaFont]}>My Hobbies & Skills</Text>
+        <Text style={[styles.headerSubtitle, styles.jakartaFont]}>Apa saja yang Hanna suka?</Text>
+      </View>
 
-      <ThemedText style={styles.jakartaFont}>
-        This app includes example code to help you get started.
-      </ThemedText>
+      <View style={styles.content}>
+        {/* Hobi 1: Hitung-hitungan */}
+        <View style={styles.skillCard}>
+          <View style={styles.iconCircle}>
+            <Ionicons name="calculator" size={30} color="#D81B60" />
+          </View>
+          <View style={styles.skillInfo}>
+            <Text style={[styles.skillTitle, styles.jakartaFont]}>Matematika & Logika</Text>
+            <Text style={[styles.skillDesc, styles.jakartaFont]}>Suka banget memecahkan masalah angka.</Text>
+          </View>
+        </View>
 
-      <Collapsible title="File-based routing">
-        <ThemedText style={styles.jakartaFont}>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold" style={styles.jakartaFont}>app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold" style={styles.jakartaFont}>app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-      </Collapsible>
+        {/* Hobi 2: Coding */}
+        <View style={styles.skillCard}>
+          <View style={styles.iconCircle}>
+            <Ionicons name="code-slash" size={30} color="#D81B60" />
+          </View>
+          <View style={styles.skillInfo}>
+            <Text style={[styles.skillTitle, styles.jakartaFont]}>Mobile Programming</Text>
+            <Text style={[styles.skillDesc, styles.jakartaFont]}>Lagi belajar buat aplikasi pakai React Native.</Text>
+          </View>
+        </View>
 
-      {/* Bagian lainnya tetap sama, pastikan semua menggunakan styles.jakartaFont */}
-      
-    </ParallaxScrollView>
+        {/* Hobi 3: Travelling / Medan Pride */}
+        <View style={styles.skillCard}>
+          <View style={styles.iconCircle}>
+            <Ionicons name="map" size={30} color="#D81B60" />
+          </View>
+          <View style={styles.skillInfo}>
+            <Text style={[styles.skillTitle, styles.jakartaFont]}>Explore Medan</Text>
+            <Text style={[styles.skillDesc, styles.jakartaFont]}>Lahir dan besar di Medan, suka jalan-jalan!</Text>
+          </View>
+        </View>
+
+        {/* Bagian Quote */}
+        <View style={styles.quoteBox}>
+          <Text style={[styles.quoteText, styles.jakartaFont]}>
+            "Logika akan membawamu dari A ke B. Imajinasi akan membawamu ke mana saja."
+          </Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: '#FFEBEE', // Pink senada dengan Home
   },
-  titleContainer: {
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFEBEE',
+  },
+  header: {
+    paddingTop: 60,
+    paddingHorizontal: 25,
+    paddingBottom: 20,
+    backgroundColor: '#FF69B4',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+  },
+  headerTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  headerSubtitle: {
+    fontSize: 14,
+    color: '#FFE4E1',
+    marginTop: 5,
+  },
+  content: {
+    padding: 20,
+  },
+  skillCard: {
     flexDirection: 'row',
-    gap: 8,
+    backgroundColor: '#FFF',
+    padding: 15,
+    borderRadius: 20,
+    marginBottom: 15,
+    alignItems: 'center',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+  },
+  iconCircle: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#FFEBEE',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  skillInfo: {
+    flex: 1,
+  },
+  skillTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#D81B60',
+  },
+  skillDesc: {
+    fontSize: 13,
+    color: '#666',
+    marginTop: 2,
+  },
+  quoteBox: {
+    marginTop: 20,
+    padding: 20,
+    backgroundColor: '#FFF0F5',
+    borderRadius: 15,
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    borderColor: '#FF69B4',
+    alignItems: 'center',
+  },
+  quoteText: {
+    fontSize: 14,
+    color: '#D81B60',
+    fontStyle: 'italic',
+    textAlign: 'center',
   },
   jakartaFont: {
     fontFamily: 'Jakarta',
-    ...Platform.select({
-        web: {
-            fontFamily: 'Jakarta, sans-serif',
-        }
-    })
   },
 });
