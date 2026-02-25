@@ -46,7 +46,7 @@ export default function HomeScreen() {
           {showAbout && (
         <View style={styles.aboutCard}>
           <Text style={[styles.aboutText, styles.jakartaFont]}>
-            Halo semua! Aku lahir dan besar di Medan. Aku suka banget hitung-hitungan dan memecahkan masalah karena menurutku itu memerlukan logika yang cukup tajam. 
+            Halo semua! Namaku Hanna Pati Lopian Br Situmeang, biasa di panggil Hanna,Ana atau Cipeng. Aku lahir dan besar di Medan. Fun fact tentang aku, aku tuh suka banget hitung-hitungan dan memecahkan masalah karena menurutku itu memerlukan logika dan analitis yg kuat. 
           </Text>
           <Text style={[styles.aboutText, styles.jakartaFont]}>
             Semoga kita bisa berteman dekat! 
