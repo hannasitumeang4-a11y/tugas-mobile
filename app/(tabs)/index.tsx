@@ -1,6 +1,20 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
+  // 1. Load font di sini agar bisa digunakan di file ini
+  const [fontsLoaded, fontError] = useFonts({
+    'Jakarta': require('../../assets/fonts/PlusJakartaSans-Regular.ttf'),
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Image 
@@ -8,9 +22,10 @@ export default function HomeScreen() {
         style={styles.image}
       />
 
-      <Text style={styles.title}>Tugas Mobile Programming</Text>
-      <Text>Nama: Hanna Pati Lopian Br Situmeang</Text>
-      <Text>NIM: 2405102001</Text>
+      {/* 3. Gunakan style.jakartaFont di setiap komponen Text */}
+      <Text style={[styles.title, styles.jakartaFont]}>Tugas Mobile Programming</Text>
+      <Text style={styles.jakartaFont}>Nama: Hanna Pati Lopian Br Situmeang</Text>
+      <Text style={styles.jakartaFont}>NIM: 2405102001</Text>
     </View>
   );
 }
@@ -20,15 +35,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff', 
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    marginBottom: 5,
   },
   image: {
     width: 150,
     height: 150,
     marginBottom: 20,
     borderRadius: 75,
+  },
+  jakartaFont: {
+    fontFamily: 'Jakarta',
   },
 });
